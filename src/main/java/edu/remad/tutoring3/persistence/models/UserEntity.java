@@ -14,9 +14,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Contains information of an user
+ * 
+ * @author edu.remad
+ * @since 2025
+ */
 @Entity
-@Table(name = "userentity", uniqueConstraints = { @UniqueConstraint(columnNames = "preferred_username"),
-		@UniqueConstraint(columnNames = "email"), @UniqueConstraint(columnNames = "sub") })
+@Table(name = "userentity", uniqueConstraints = {
+		@UniqueConstraint(columnNames = { "preferred_username", "email", "sub" }) })
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -51,7 +57,7 @@ public class UserEntity {
 	@NotNull
 	@Column(name = "preferred_username")
 	private String preferredUsername;
-	
+
 	@NotNull
 	@Column(name = "sub")
 	private String sub;
