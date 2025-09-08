@@ -22,7 +22,7 @@ import lombok.Setter;
  */
 @Entity
 @Table(name = "userentity", uniqueConstraints = {
-		@UniqueConstraint(columnNames = { "preferred_username", "email", "sub" }) })
+		@UniqueConstraint(columnNames = { "user_id","preferred_username", "email", "sub" }) })
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -31,7 +31,7 @@ import lombok.Setter;
 public class UserEntity {
 
 	@Id
-	@Column(unique = true)
+	@Column(name="user_id", unique = true)
 	private String userId;
 
 	@NotNull
