@@ -1,7 +1,6 @@
 package edu.remad.tutoring3.persistence.models;
 
-import java.time.LocalDateTime;
-
+import java.time.LocalDateTime;import edu.remad.tutoring3.dto.UserInfo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -65,4 +64,22 @@ public class UserEntity {
 	@NotNull
 	@Column(name = "creation_date", columnDefinition = "TIMESTAMP")
 	private LocalDateTime creationDate;
+	
+	/**
+	 * Copy-Constructor
+	 * 
+	 * @param userInfo {@link UserInfo}
+	 */
+	public UserEntity(UserInfo userInfo) {
+		UserEntity user = new UserEntity();
+		user.setCreationDate(LocalDateTime.now());
+		user.setEmail(userInfo.getEmail());
+		user.setEmailVerified(userInfo.getEmail_verified());
+		user.setFamilyName(userInfo.getFamily_name());
+		user.setGivenName(userInfo.getGiven_name());
+		user.setName(userInfo.getName());
+		user.setPreferredUsername(userInfo.getPreferred_username());
+		user.setSub(userInfo.getSub());
+		user.setUserId(userInfo.getSub());
+	}
 }
