@@ -2,12 +2,15 @@ package edu.remad.tutoring3.persistence.models;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,7 +26,7 @@ import lombok.Setter;
  * @since 2025
  */
 @Entity
-@Table(name = "addressentity", uniqueConstraints = { @UniqueConstraint(columnNames = {"address_id"})})
+@Table(name = "addressentity")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -35,8 +38,9 @@ public class AddressEntity {
 	/**
 	 * the primary key for an address
 	 */
-	@Id @GeneratedValue(strategy = IDENTITY)
-	@Column(name="address_id", unique = true)
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "address_id", unique = true)
 	private long id;
 
 	/**
@@ -52,7 +56,7 @@ public class AddressEntity {
 	@NotNull
 	@Column(name = "address_house_number")
 	private String addressHouseNo;
-	
+
 //	@ManyToOne(fetch = FetchType.LAZY)
 //	@JoinColumn(name = "user")
 //	private UserEntity user;
@@ -63,18 +67,29 @@ public class AddressEntity {
 	@NotNull
 	@Column(name = "address_zip_code")
 	private int addressZipCode;
-	
+
 	/**
 	 * the place of living
 	 */
 	@NotNull
 	@Column(name = "place")
 	private String place;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    private UserEntity user;
+
+	@NotNull
+	@Column(name = "creation_date", columnDefinition = "TIMESTAMP")
+	private LocalDateTime creationDate;
+	
+	public void setAddress(UserEntity userEntity) {
+		user = userEntity;
+	}
 
 	@Override
 	public String toString() {
 		return "AddressEntity [id=" + id + ", addressStreet=" + addressStreet + ", addressHouseNo=" + addressHouseNo
-				+ ", addressZipCode=" + addressZipCode + ", place=" + place + "]";
+				+ ", addressZipCode=" + addressZipCode + ", place=" + place + ", creationDate=" + creationDate + "]";
 	}
-	
+
 }

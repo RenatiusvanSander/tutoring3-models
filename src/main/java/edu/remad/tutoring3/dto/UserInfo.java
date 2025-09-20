@@ -9,7 +9,7 @@ package edu.remad.tutoring3.dto;
 public class UserInfo {
 
 	private String sub;
-	private boolean email_verified;
+	private String email_verified;
 	private String name;
 	private String preferred_username;
 	private String given_name;
@@ -27,11 +27,11 @@ public class UserInfo {
 		this.sub = sub;
 	}
 
-	public boolean getEmail_verified() {
+	public String getEmail_verified() {
 		return email_verified;
 	}
 
-	public void setEmail_verified(boolean email_verified) {
+	public void setEmail_verified(String email_verified) {
 		this.email_verified = email_verified;
 	}
 

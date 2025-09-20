@@ -1,9 +1,18 @@
 package edu.remad.tutoring3.persistence.models;
 
-import java.time.LocalDateTime;import edu.remad.tutoring3.dto.UserInfo;
+import static jakarta.persistence.GenerationType.IDENTITY;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.remad.tutoring3.dto.UserInfo;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotNull;
@@ -21,7 +30,7 @@ import lombok.Setter;
  */
 @Entity
 @Table(name = "userentity", uniqueConstraints = {
-		@UniqueConstraint(columnNames = { "user_id","preferred_username", "email", "sub" }) })
+		@UniqueConstraint(columnNames = { "preferred_username", "email", "sub" }) })
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -30,11 +39,12 @@ import lombok.Setter;
 public class UserEntity {
 
 	@Id
-	@Column(name="user_id", unique = true)
-	private String userId;
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "user_id")
+	private long userId;
 
 	@NotNull
-	@Column(name = "name", unique = true)
+	@Column(name = "name")
 	private String name;
 
 	@NotNull
@@ -61,25 +71,37 @@ public class UserEntity {
 	@Column(name = "sub")
 	private String sub;
 
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<AddressEntity> addresses = new ArrayList<>();
+
+	public void addAddress(AddressEntity address) {
+		addresses.add(address);
+		address.setAddress(this);
+	}
+
+	public void removeAddress(AddressEntity address) {
+		addresses.remove(address);
+		address.setAddress(null);
+	}
+
 	@NotNull
 	@Column(name = "creation_date", columnDefinition = "TIMESTAMP")
 	private LocalDateTime creationDate;
-	
+
 	/**
 	 * Copy-Constructor
 	 * 
 	 * @param userInfo {@link UserInfo}
 	 */
 	public UserEntity(UserInfo userInfo) {
-		UserEntity user = new UserEntity();
-		user.setCreationDate(LocalDateTime.now());
-		user.setEmail(userInfo.getEmail());
-		user.setEmailVerified(userInfo.getEmail_verified());
-		user.setFamilyName(userInfo.getFamily_name());
-		user.setGivenName(userInfo.getGiven_name());
-		user.setName(userInfo.getName());
-		user.setPreferredUsername(userInfo.getPreferred_username());
-		user.setSub(userInfo.getSub());
-		user.setUserId(userInfo.getSub());
+		setUserId(0);
+		setName(userInfo.getName());
+		setEmail(userInfo.getEmail());
+		setEmailVerified(Boolean.valueOf(userInfo.getEmail_verified()));
+		setGivenName(userInfo.getGiven_name());
+		setFamilyName(userInfo.getFamily_name());
+		setPreferredUsername(userInfo.getPreferred_username());
+		setSub(userInfo.getSub());
+		setCreationDate(LocalDateTime.now());
 	}
 }
