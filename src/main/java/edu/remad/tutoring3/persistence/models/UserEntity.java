@@ -76,12 +76,12 @@ public class UserEntity {
 
 	public void addAddress(AddressEntity address) {
 		addresses.add(address);
-		address.setAddress(this);
+		address.setUserEntity(this);
 	}
 
 	public void removeAddress(AddressEntity address) {
 		addresses.remove(address);
-		address.setAddress(null);
+		address.setUserEntity(null);
 	}
 
 	@NotNull

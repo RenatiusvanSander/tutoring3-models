@@ -4,6 +4,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 
 import java.time.LocalDateTime;
 
+import edu.remad.tutoring3.dto.AddressDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -57,10 +58,6 @@ public class AddressEntity {
 	@Column(name = "address_house_number")
 	private String addressHouseNo;
 
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "user")
-//	private UserEntity user;
-
 	/**
 	 * the zip code
 	 */
@@ -82,8 +79,16 @@ public class AddressEntity {
 	@Column(name = "creation_date", columnDefinition = "TIMESTAMP")
 	private LocalDateTime creationDate;
 	
-	public void setAddress(UserEntity userEntity) {
+	public void setUserEntity(UserEntity userEntity) {
 		user = userEntity;
+	}
+	
+	public AddressEntity(AddressDto address) {
+		id = address.getId();
+		addressStreet = address.getAddressStreet();
+		addressHouseNo = address.getAddressHouseNo();
+		addressZipCode = address.getAddressZipCode();
+		place = address.getPlace();
 	}
 
 	@Override
