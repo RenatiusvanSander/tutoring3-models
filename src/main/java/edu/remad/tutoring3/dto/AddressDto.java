@@ -1,5 +1,7 @@
 package edu.remad.tutoring3.dto;
 
+import edu.remad.tutoring3.persistence.models.AddressEntity;
+
 /**
  * Stores address' information.
  * 
@@ -15,17 +17,44 @@ public class AddressDto {
 	private String place;
 	private long userId;
 
+	/**
+	 * Constructor
+	 */
 	public AddressDto() {
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * @param id
+	 * @param addressStreet
+	 * @param addressHouseNo
+	 * @param addressZipCode
+	 * @param place
+	 * @param userId
+	 */
 	public AddressDto(long id, String addressStreet, String addressHouseNo, int addressZipCode, String place,
-			long userId, String creationDate) {
+			long userId) {
 		this.id = id;
 		this.addressStreet = addressStreet;
 		this.addressHouseNo = addressHouseNo;
 		this.addressZipCode = addressZipCode;
 		this.place = place;
 		this.userId = userId;
+	}
+
+	/**
+	 * Constructor
+	 * 
+	 * @param address {@link AddressEntity}
+	 */
+	public AddressDto(AddressEntity address) {
+		setId(address.getId());
+		setAddressStreet(address.getAddressStreet());
+		setAddressHouseNo(address.getAddressHouseNo());
+		setAddressZipCode(address.getAddressZipCode());
+		setPlace(address.getPlace());
+		setUserId(address.getUser().getUserId());
 	}
 
 	public long getId() {
