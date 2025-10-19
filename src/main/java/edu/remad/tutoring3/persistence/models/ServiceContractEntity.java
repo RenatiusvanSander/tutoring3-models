@@ -44,7 +44,7 @@ public class ServiceContractEntity {
 	/**
 	 * creation date of service contract
 	 */
-	@Column(name = "service_contract_creation_date", columnDefinition = "TIMESTAMP")
+	@Column(name = "creation_date", columnDefinition = "TIMESTAMP")
 	private LocalDateTime serviceContractCreationDate;
 
 }

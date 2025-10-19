@@ -10,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -47,4 +48,8 @@ public class PriceEntity {
 	
 	/** currency */
 	private String currency;
+	
+	@NotNull
+	@Column(name = "creation_date", columnDefinition = "TIMESTAMP")
+	private LocalDateTime creationDate;
 }

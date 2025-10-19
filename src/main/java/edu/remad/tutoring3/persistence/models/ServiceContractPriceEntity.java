@@ -1,14 +1,15 @@
 package edu.remad.tutoring3.persistence.models;
 
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -43,5 +44,9 @@ public class ServiceContractPriceEntity {
 	private PriceEntity priceId;
 	
 	private boolean confirmed;
+	
+	@NotNull
+	@Column(name = "creation_date", columnDefinition = "TIMESTAMP")
+	private LocalDateTime creationDate;
 
 }
