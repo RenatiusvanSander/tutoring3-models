@@ -41,6 +41,10 @@ public class PriceEntity {
 	@Column(name = "price_id", unique = true)
 	private long id;
 	
+	/** price with precision 16 and scale 2*/
 	@Column(precision = 16, scale = 2)
 	private BigDecimal price;
+	
+	/** currency */
+	private String currency;
 }
