@@ -2,6 +2,7 @@ package edu.remad.tutoring3.persistence.models;
 
 import java.time.LocalDateTime;
 
+import edu.remad.tutoring3.dto.ServiceContractDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,8 +15,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * service contract
+ * 
+ * @author edu.remad
+ * @since 2025
+ */
 @Entity
-@Table(name = "service_contracts")
+@Table(name = "service_contract_entity")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -24,10 +31,21 @@ import lombok.Setter;
 public class ServiceContractEntity {
 	
 	/**
+	 * Constructor
+	 * 
+	 * @param serviceContract {@link serviceContract}
+	 */
+	public ServiceContractEntity(ServiceContractDto serviceContract) {
+		setServiceContractNo(serviceContract.getServiceContractNo());
+		setServiceContractName(serviceContract.getServiceContractName());
+		setServiceContractDescription(serviceContract.getServiceContractDescription());
+	}
+
+	/**
 	 * service contract number as primary key
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "service_contract_no")
 	private long serviceContractNo;
 
@@ -44,7 +62,7 @@ public class ServiceContractEntity {
 	/**
 	 * creation date of service contract
 	 */
-	@Column(name = "service_contract_creation_date", columnDefinition = "TIMESTAMP")
+	@Column(name = "creation_date", columnDefinition = "TIMESTAMP")
 	private LocalDateTime serviceContractCreationDate;
 
 }

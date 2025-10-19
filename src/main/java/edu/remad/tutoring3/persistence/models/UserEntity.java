@@ -1,7 +1,5 @@
 package edu.remad.tutoring3.persistence.models;
 
-import static jakarta.persistence.GenerationType.IDENTITY;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +9,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -29,7 +28,7 @@ import lombok.Setter;
  * @since 2025
  */
 @Entity
-@Table(name = "userentity", uniqueConstraints = {
+@Table(name = "user_entity", uniqueConstraints = {
 		@UniqueConstraint(columnNames = { "preferred_username", "email", "sub" }) })
 @NoArgsConstructor
 @AllArgsConstructor
@@ -39,7 +38,7 @@ import lombok.Setter;
 public class UserEntity {
 
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private long userId;
 
