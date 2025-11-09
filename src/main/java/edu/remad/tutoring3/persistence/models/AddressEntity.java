@@ -1,7 +1,5 @@
 package edu.remad.tutoring3.persistence.models;
 
-import static jakarta.persistence.GenerationType.IDENTITY;
-
 import java.time.LocalDateTime;
 
 import edu.remad.tutoring3.dto.AddressDto;
@@ -9,6 +7,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -27,7 +26,7 @@ import lombok.Setter;
  * @since 2025
  */
 @Entity
-@Table(name = "addressentity")
+@Table(name = "address_entity")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -40,8 +39,8 @@ public class AddressEntity {
 	 * the primary key for an address
 	 */
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "address_id", unique = true)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "address_id")
 	private long id;
 
 	/**
