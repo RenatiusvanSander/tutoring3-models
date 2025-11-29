@@ -1,5 +1,8 @@
 package edu.remad.tutoring3.dto;
 
+import java.time.ZoneOffset;
+
+import edu.remad.tutoring3.persistence.models.TutoringAppointmentEntity;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -50,4 +53,18 @@ public class TutoringAppointmentDto {
 	 * when done it is {@code true}
 	 */
 	private boolean isAccomplished;
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param tutoringAppointment {@link TutoringAppointmentEntity} used to convert to a {@link TutoringAppointmentDto}
+	 */
+	public TutoringAppointmentDto (TutoringAppointmentEntity tutoringAppointment) {
+		setId(tutoringAppointment.getTutoringAppointmentNo());
+		setUserId(0);
+		setTutoringAppointmentDate(tutoringAppointment.getTutoringAppointmentDate().toInstant(ZoneOffset.UTC).toString());
+		setTutoringAppointmentStartDateTime(tutoringAppointment.getTutoringAppointmentStartDateTime().toInstant(ZoneOffset.UTC).toString());
+		setTutoringAppointmentEndDateTime(tutoringAppointment.getTutoringAppointmentEndDateTime().toInstant(ZoneOffset.UTC).toString());
+		setAccomplished(tutoringAppointment.isAccomplished());
+	}
 }

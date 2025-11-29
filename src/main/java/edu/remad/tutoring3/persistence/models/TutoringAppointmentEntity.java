@@ -2,6 +2,7 @@ package edu.remad.tutoring3.persistence.models;
 
 import java.time.LocalDateTime;
 
+import edu.remad.tutoring3.dto.TutoringAppointmentDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -68,5 +69,18 @@ public class TutoringAppointmentEntity {
 	 */
 	@Column(name = "tutoring_appointment_creation_date", columnDefinition = "TIMESTAMP")
 	private LocalDateTime tutoringAppointmentCreationDate;
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param tutoringAppointment
+	 */
+	public TutoringAppointmentEntity(TutoringAppointmentDto tutoringAppointment) {
+		setTutoringAppointmentNo(tutoringAppointment.getId());
+		setTutoringAppointmentDate(null);
+		setTutoringAppointmentStartDateTime(null);
+		setTutoringAppointmentEndDateTime(null);
+		setAccomplished(tutoringAppointment.isAccomplished());
+	}
 }
 
