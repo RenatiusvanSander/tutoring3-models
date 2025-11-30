@@ -3,6 +3,7 @@ package edu.remad.tutoring3.persistence.models;
 import java.time.LocalDateTime;
 
 import edu.remad.tutoring3.dto.TutoringAppointmentDto;
+import edu.remad.tutoring3.helper.LocalDateTimeHelper;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -77,9 +78,9 @@ public class TutoringAppointmentEntity {
 	 */
 	public TutoringAppointmentEntity(TutoringAppointmentDto tutoringAppointment) {
 		setTutoringAppointmentNo(tutoringAppointment.getId());
-		setTutoringAppointmentDate(null);
-		setTutoringAppointmentStartDateTime(null);
-		setTutoringAppointmentEndDateTime(null);
+		setTutoringAppointmentDate(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(tutoringAppointment.getTutoringAppointmentDate()));
+		setTutoringAppointmentStartDateTime(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(tutoringAppointment.getTutoringAppointmentStartDateTime()));
+		setTutoringAppointmentEndDateTime(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(tutoringAppointment.getTutoringAppointmentEndDateTime()));
 		setAccomplished(tutoringAppointment.isAccomplished());
 	}
 }
