@@ -27,10 +27,10 @@ public class TutoringAppointmentDto {
 	 */
 	private long id;
 
-	/**
-	 * tutoring appointment's customer number
-	 */
-	private long userId;
+//	/**
+//	 * tutoring appointment's customer number
+//	 */
+//	private long userId;
 
 	/**
 	 * date of tutoring appointment
@@ -47,7 +47,7 @@ public class TutoringAppointmentDto {
 	 */
 	private String tutoringAppointmentEndDateTime;
 	
-	private long serviceContractId;
+//	private long serviceContractId;
 	
 	/**
 	 * when done it is {@code true}
@@ -61,7 +61,7 @@ public class TutoringAppointmentDto {
 	 */
 	public TutoringAppointmentDto (TutoringAppointmentEntity tutoringAppointment) {
 		setId(tutoringAppointment.getTutoringAppointmentNo());
-		setUserId(0);
+//		setUserId(0);
 		setTutoringAppointmentDate(tutoringAppointment.getTutoringAppointmentDate().toInstant(ZoneOffset.UTC).toString());
 		setTutoringAppointmentStartDateTime(tutoringAppointment.getTutoringAppointmentStartDateTime().toInstant(ZoneOffset.UTC).toString());
 		setTutoringAppointmentEndDateTime(tutoringAppointment.getTutoringAppointmentEndDateTime().toInstant(ZoneOffset.UTC).toString());
