@@ -1,6 +1,7 @@
 package edu.remad.tutoring3.persistence.models;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import edu.remad.tutoring3.dto.TutoringAppointmentDto;
 import edu.remad.tutoring3.helper.LocalDateTimeHelper;
@@ -74,14 +75,14 @@ public class TutoringAppointmentEntity {
 	/**
 	 * Constructor
 	 * 
-	 * @param tutoringAppointment
+	 * @param dto an object of {@link TutoringAppointmentDto}
 	 */
-	public TutoringAppointmentEntity(TutoringAppointmentDto tutoringAppointment) {
-		setTutoringAppointmentNo(tutoringAppointment.getId());
-		setTutoringAppointmentDate(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(tutoringAppointment.getTutoringAppointmentDate()));
-		setTutoringAppointmentStartDateTime(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(tutoringAppointment.getTutoringAppointmentStartDateTime()));
-		setTutoringAppointmentEndDateTime(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(tutoringAppointment.getTutoringAppointmentEndDateTime()));
-		setAccomplished(tutoringAppointment.isAccomplished());
+	public TutoringAppointmentEntity(TutoringAppointmentDto dto) {
+		setTutoringAppointmentNo(dto.getId());
+		setTutoringAppointmentDate(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(dto.getTutoringAppointmentDate()));
+		setTutoringAppointmentStartDateTime(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(dto.getTutoringAppointmentStartDateTime()));
+		setTutoringAppointmentEndDateTime(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(dto.getTutoringAppointmentEndDateTime()));
+		setAccomplished(dto.isAccomplished());
 	}
 }
 

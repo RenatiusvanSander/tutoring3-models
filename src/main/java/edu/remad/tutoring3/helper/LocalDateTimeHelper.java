@@ -1,6 +1,8 @@
 package edu.remad.tutoring3.helper;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -20,13 +22,14 @@ public final class LocalDateTimeHelper {
 	}
 
 	/**
-	 * Converts a Strng in ISO-8601 format in {@link LocalDateTime}
+	 * Converts a String in ISO-8601 format in {@link LocalDateTime}. Converted via a {@link ZonedDateTime} and added are ZoneId of OS default
 	 * 
 	 * @param iso8601Time String encoded as ISO-8601 time
 	 * @return {@link LocalDateTime}
 	 */
 	public static LocalDateTime convertIsoTimeStringToLocalDateTime(String iso8601Time) {
-		return LocalDateTime.parse(iso8601Time, dateTimeFormatter);
+		return ZonedDateTime.parse(iso8601Time, DateTimeFormatter.ISO_DATE_TIME)
+				.withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
 	}
 
 }

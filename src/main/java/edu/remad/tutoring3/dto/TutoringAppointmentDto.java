@@ -1,6 +1,7 @@
 package edu.remad.tutoring3.dto;
 
 import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 
 import edu.remad.tutoring3.persistence.models.TutoringAppointmentEntity;
 import lombok.AllArgsConstructor;
@@ -62,9 +63,9 @@ public class TutoringAppointmentDto {
 	public TutoringAppointmentDto (TutoringAppointmentEntity tutoringAppointment) {
 		setId(tutoringAppointment.getTutoringAppointmentNo());
 //		setUserId(0);
-		setTutoringAppointmentDate(tutoringAppointment.getTutoringAppointmentDate().toInstant(ZoneOffset.UTC).toString());
-		setTutoringAppointmentStartDateTime(tutoringAppointment.getTutoringAppointmentStartDateTime().toInstant(ZoneOffset.UTC).toString());
-		setTutoringAppointmentEndDateTime(tutoringAppointment.getTutoringAppointmentEndDateTime().toInstant(ZoneOffset.UTC).toString());
+		setTutoringAppointmentDate(tutoringAppointment.getTutoringAppointmentDate().format(DateTimeFormatter.ISO_DATE_TIME));
+		setTutoringAppointmentStartDateTime(tutoringAppointment.getTutoringAppointmentStartDateTime().format(DateTimeFormatter.ISO_DATE_TIME));
+		setTutoringAppointmentEndDateTime(tutoringAppointment.getTutoringAppointmentEndDateTime().format(DateTimeFormatter.ISO_DATE_TIME));
 		setAccomplished(tutoringAppointment.isAccomplished());
 	}
 }
