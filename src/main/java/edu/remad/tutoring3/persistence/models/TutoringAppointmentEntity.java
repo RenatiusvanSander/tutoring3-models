@@ -7,9 +7,12 @@ import edu.remad.tutoring3.dto.TutoringAppointmentDto;
 import edu.remad.tutoring3.helper.LocalDateTimeHelper;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,12 +37,12 @@ public class TutoringAppointmentEntity {
 	@Column(name = "tutoring_appointment_no")
 	private long tutoringAppointmentNo;
 
-//	/**
-//	 * tutoring appointment's customer number
-//	 */
-//	@OneToOne
-//	@JoinColumn(name = "tutoring_appointment_user", referencedColumnName = "id")
-//	private UserEntity tutoringAppointmentUser;
+	/**
+	 * tutoring appointment's user id
+	 */
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tutoring_appointment_user_id")
+	private UserEntity tutoringAppointmentUser;
 
 	/**
 	 * date of tutoring appointment
@@ -77,8 +80,9 @@ public class TutoringAppointmentEntity {
 	 * 
 	 * @param dto an object of {@link TutoringAppointmentDto}
 	 */
-	public TutoringAppointmentEntity(TutoringAppointmentDto dto) {
+	public TutoringAppointmentEntity(TutoringAppointmentDto dto, UserEntity user) {
 		setTutoringAppointmentNo(dto.getId());
+		setTutoringAppointmentUser(user);
 		setTutoringAppointmentDate(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(dto.getTutoringAppointmentDate()));
 		setTutoringAppointmentStartDateTime(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(dto.getTutoringAppointmentStartDateTime()));
 		setTutoringAppointmentEndDateTime(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(dto.getTutoringAppointmentEndDateTime()));

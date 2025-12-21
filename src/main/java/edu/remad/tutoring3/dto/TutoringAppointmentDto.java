@@ -28,10 +28,10 @@ public class TutoringAppointmentDto {
 	 */
 	private long id;
 
-//	/**
-//	 * tutoring appointment's customer number
-//	 */
-//	private long userId;
+	/**
+	 * tutoring appointment's customer number
+	 */
+	private long userId;
 
 	/**
 	 * date of tutoring appointment
@@ -62,7 +62,7 @@ public class TutoringAppointmentDto {
 	 */
 	public TutoringAppointmentDto (TutoringAppointmentEntity tutoringAppointment) {
 		setId(tutoringAppointment.getTutoringAppointmentNo());
-//		setUserId(0);
+		setUserId(tutoringAppointment.getTutoringAppointmentUser().getUserId());
 		setTutoringAppointmentDate(tutoringAppointment.getTutoringAppointmentDate().format(DateTimeFormatter.ISO_DATE_TIME));
 		setTutoringAppointmentStartDateTime(tutoringAppointment.getTutoringAppointmentStartDateTime().format(DateTimeFormatter.ISO_DATE_TIME));
 		setTutoringAppointmentEndDateTime(tutoringAppointment.getTutoringAppointmentEndDateTime().format(DateTimeFormatter.ISO_DATE_TIME));
