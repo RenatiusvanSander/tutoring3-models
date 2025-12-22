@@ -1,8 +1,6 @@
 package edu.remad.tutoring3.persistence.models;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import edu.remad.tutoring3.dto.TutoringAppointmentDto;
 import edu.remad.tutoring3.helper.LocalDateTimeHelper;
 import jakarta.persistence.Column;
@@ -62,7 +60,9 @@ public class TutoringAppointmentEntity {
 	@Column(name = "tutoring_appointment_end_date_time", columnDefinition = "TIMESTAMP")
 	private LocalDateTime tutoringAppointmentEndDateTime;
 	
-//	private ServiceContractEntity serviceContractEntity;
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tutoring_appointment_service_contract_id")
+	private ServiceContractEntity serviceContractId;
 	
 	/**
 	 * when done it is {@code true}
@@ -79,13 +79,16 @@ public class TutoringAppointmentEntity {
 	 * Constructor
 	 * 
 	 * @param dto an object of {@link TutoringAppointmentDto}
+	 * @param user {@link UserEntity}
+	 * @param serviceContractEntity {@link ServiceContractEntity}
 	 */
-	public TutoringAppointmentEntity(TutoringAppointmentDto dto, UserEntity user) {
-		setTutoringAppointmentNo(dto.getId());
+	public TutoringAppointmentEntity(TutoringAppointmentDto dto, UserEntity user, ServiceContractEntity serviceContractEntity) {
+		setTutoringAppointmentNo(dto.getTutoringAppointmentNo());
 		setTutoringAppointmentUser(user);
 		setTutoringAppointmentDate(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(dto.getTutoringAppointmentDate()));
 		setTutoringAppointmentStartDateTime(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(dto.getTutoringAppointmentStartDateTime()));
 		setTutoringAppointmentEndDateTime(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(dto.getTutoringAppointmentEndDateTime()));
+		setServiceContractId(serviceContractEntity);
 		setAccomplished(dto.isAccomplished());
 	}
 }
