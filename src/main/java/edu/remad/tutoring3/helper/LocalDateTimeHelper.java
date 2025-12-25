@@ -15,6 +15,9 @@ public final class LocalDateTimeHelper {
 
 	private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
+	/**
+	 * private Constructor forbids initialization
+	 */
 	private LocalDateTimeHelper() {
 		// not supported
 		throw new UnsupportedOperationException(
@@ -22,7 +25,8 @@ public final class LocalDateTimeHelper {
 	}
 
 	/**
-	 * Converts a String in ISO-8601 format in {@link LocalDateTime}. Converted via a {@link ZonedDateTime} and added are ZoneId of OS default
+	 * Converts a String in ISO-8601 format in {@link LocalDateTime}. Converted via
+	 * a {@link ZonedDateTime} and added are ZoneId of OS default
 	 * 
 	 * @param iso8601Time String encoded as ISO-8601 time
 	 * @return {@link LocalDateTime}
