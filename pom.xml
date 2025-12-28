@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>edu.remad</groupId>
 	<artifactId>tutoring3-models</artifactId>
-	<version>0.1.2-SNAPSHOT</version>
+	<version>0.50.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<description>all tutoring3 app models for ORMs</description>
 
