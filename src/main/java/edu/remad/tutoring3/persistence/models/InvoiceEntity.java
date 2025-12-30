@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -79,6 +80,13 @@ public class InvoiceEntity {
 	private PriceEntity priceId;
 	
 	/**
+	 * Invoice is stored as binary PDF in database
+	 */
+	@Lob
+	@Column(name = "invoiceFile", columnDefinition = "BLOB")
+	private byte[] invoiceFile;
+	
+	/**
 	 * creation date of invoice
 	 */
 	@Column(name = "creation_date", columnDefinition = "TIMESTAMP")
@@ -91,6 +99,7 @@ public class InvoiceEntity {
 	 * @param serviceContract {@link ServiceContractEntity}
 	 * @param user {@link UserEntity}
 	 * @param price {@link PriceEntity}
+	 * @param now Local Date Time of now
 	 */
 	public InvoiceEntity(InvoiceDto invoiceDto, ServiceContractEntity serviceContract, UserEntity user, PriceEntity price, LocalDateTime now) {
 		setNo(invoiceDto.getNo());
@@ -119,6 +128,48 @@ public class InvoiceEntity {
 		setTutoringDate(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(invoiceDto.getTutoringDate()));
 		setUserId(user);
 		setPriceId(price);
+	}
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param invoiceDto {@link InvoiceDto} to {@link InvoiceEntity}
+	 * @param serviceContract {@link ServiceContractEntity}
+	 * @param user {@link UserEntity}
+	 * @param price {@link PriceEntity}
+	 * @param invoicePdf PDF file as array of bytes
+	 */
+	public InvoiceEntity(InvoiceDto invoiceDto, ServiceContractEntity serviceContract, UserEntity user, PriceEntity price, byte[] invoicePdf) {
+		setNo(invoiceDto.getNo());
+		setServiceContractId(serviceContract);
+		setTutoringHours(invoiceDto.getTutoringHours());
+		setDate(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(invoiceDto.getDate()));
+		setTutoringDate(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(invoiceDto.getTutoringDate()));
+		setUserId(user);
+		setPriceId(price);
+		setInvoiceFile(invoicePdf);
+	}
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param invoiceDto {@link InvoiceDto} to {@link InvoiceEntity}
+	 * @param serviceContract {@link ServiceContractEntity}
+	 * @param user {@link UserEntity}
+	 * @param price {@link PriceEntity}
+	 * @param invoicePdf PDF file as array of bytes
+	 * @param now Local Date Time of now
+	 */
+	public InvoiceEntity(InvoiceDto invoiceDto, ServiceContractEntity serviceContract, UserEntity user, PriceEntity price, byte[] invoicePdf, LocalDateTime now) {
+		setNo(invoiceDto.getNo());
+		setServiceContractId(serviceContract);
+		setTutoringHours(invoiceDto.getTutoringHours());
+		setDate(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(invoiceDto.getDate()));
+		setTutoringDate(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(invoiceDto.getTutoringDate()));
+		setUserId(user);
+		setPriceId(price);
+		setInvoiceFile(invoicePdf);
+		setCreationDate(now);
 	}
 
 }
