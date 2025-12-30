@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Stores tutoring appointment
@@ -21,6 +22,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @EqualsAndHashCode
+@ToString
 public class TutoringAppointmentDto {
 	
 	/**

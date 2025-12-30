@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Stores prices
@@ -18,6 +19,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @EqualsAndHashCode
+@ToString
 public class PriceDto {
 	
 	private long id;

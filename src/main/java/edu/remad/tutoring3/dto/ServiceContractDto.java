@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Stores service contract
@@ -18,6 +19,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @EqualsAndHashCode
+@ToString
 public class ServiceContractDto {
 
 	private long serviceContractNo;

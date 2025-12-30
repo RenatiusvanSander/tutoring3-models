@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Stores user's information.
@@ -18,6 +19,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @EqualsAndHashCode
+@ToString
 public class UserDto {
 
 	private long userId;
