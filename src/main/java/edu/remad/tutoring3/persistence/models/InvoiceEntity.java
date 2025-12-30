@@ -69,14 +69,14 @@ public class InvoiceEntity {
 	 * User identifier and {@link UserEntity}
 	 */
 	@ManyToOne(fetch = FetchType.LAZY)
-	@Column(name = "user_id")
+	@JoinColumn(name = "user_id")
 	private UserEntity userId;
 	
 	/**
 	 * price's identifier and data {@link PriceEntity}
 	 */
 	@ManyToOne(fetch = FetchType.LAZY)
-	@Column(name = "price_id")
+	@JoinColumn(name = "price_id")
 	private PriceEntity priceId;
 	
 	/**
