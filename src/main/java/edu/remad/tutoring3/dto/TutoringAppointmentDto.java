@@ -55,7 +55,7 @@ public class TutoringAppointmentDto {
 	/**
 	 * when done it is {@code true}
 	 */
-	private boolean isAccomplished;
+	private boolean accomplished;
 	
 	/**
 	 * Constructor

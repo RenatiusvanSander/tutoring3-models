@@ -105,8 +105,8 @@ public class InvoiceEntity {
 		setNo(invoiceDto.getNo());
 		setServiceContractId(serviceContract);
 		setTutoringHours(invoiceDto.getTutoringHours());
-		setDate(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(invoiceDto.getDate()));
-		setTutoringDate(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(invoiceDto.getTutoringDate()));
+		setDate(LocalDateTimeHelper.convertIsoTimeWithoutZToLocalDateTime(invoiceDto.getDate()));
+		setTutoringDate(LocalDateTimeHelper.convertIsoTimeWithoutZToLocalDateTime(invoiceDto.getTutoringDate()));
 		setUserId(user);
 		setPriceId(price);
 		setCreationDate(now);
@@ -124,8 +124,8 @@ public class InvoiceEntity {
 		setNo(invoiceDto.getNo());
 		setServiceContractId(serviceContract);
 		setTutoringHours(invoiceDto.getTutoringHours());
-		setDate(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(invoiceDto.getDate()));
-		setTutoringDate(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(invoiceDto.getTutoringDate()));
+		setDate(LocalDateTimeHelper.convertIsoTimeWithoutZToLocalDateTime(invoiceDto.getDate()));
+		setTutoringDate(LocalDateTimeHelper.convertIsoTimeWithoutZToLocalDateTime(invoiceDto.getTutoringDate()));
 		setUserId(user);
 		setPriceId(price);
 	}
@@ -143,8 +143,8 @@ public class InvoiceEntity {
 		setNo(invoiceDto.getNo());
 		setServiceContractId(serviceContract);
 		setTutoringHours(invoiceDto.getTutoringHours());
-		setDate(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(invoiceDto.getDate()));
-		setTutoringDate(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(invoiceDto.getTutoringDate()));
+		setDate(LocalDateTimeHelper.convertIsoTimeWithoutZToLocalDateTime(invoiceDto.getDate()));
+		setTutoringDate(LocalDateTimeHelper.convertIsoTimeWithoutZToLocalDateTime(invoiceDto.getTutoringDate()));
 		setUserId(user);
 		setPriceId(price);
 		setInvoiceFile(invoicePdf);
@@ -164,8 +164,8 @@ public class InvoiceEntity {
 		setNo(invoiceDto.getNo());
 		setServiceContractId(serviceContract);
 		setTutoringHours(invoiceDto.getTutoringHours());
-		setDate(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(invoiceDto.getDate()));
-		setTutoringDate(LocalDateTimeHelper.convertIsoTimeStringToLocalDateTime(invoiceDto.getTutoringDate()));
+		setDate(LocalDateTimeHelper.convertIsoTimeWithoutZToLocalDateTime(invoiceDto.getDate()));
+		setTutoringDate(LocalDateTimeHelper.convertIsoTimeWithoutZToLocalDateTime(invoiceDto.getTutoringDate()));
 		setUserId(user);
 		setPriceId(price);
 		setInvoiceFile(invoicePdf);
