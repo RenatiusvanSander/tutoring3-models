@@ -69,15 +69,29 @@ public class UserEntity {
 	@NotNull
 	@Column(name = "sub")
 	private String sub;
+	
+	@Column(name = "password")
+	private String password;
+	
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<AddressEntity> addresses = new ArrayList<>();
 
+	/**
+	 * Adds address
+	 * 
+	 * @param address address to add
+	 */
 	public void addAddress(AddressEntity address) {
 		addresses.add(address);
 		address.setUserEntity(this);
 	}
 
+	/**
+	 * Removes address
+	 * 
+	 * @param address address to remove
+	 */
 	public void removeAddress(AddressEntity address) {
 		addresses.remove(address);
 		address.setUserEntity(null);
@@ -101,6 +115,7 @@ public class UserEntity {
 		setFamilyName(userInfo.getFamily_name());
 		setPreferredUsername(userInfo.getPreferred_username());
 		setSub(userInfo.getSub());
+		setPassword(null);
 		setCreationDate(LocalDateTime.now());
 	}
 }

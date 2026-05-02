@@ -35,20 +35,7 @@ import lombok.Setter;
 @Builder
 public class PriceEntity {
 	
-	/**
-	 * Constructor
-	 * 
-	 * @param price {@link PriceDto}
-	 */
-	public PriceEntity(PriceDto price) {
-		setId(price.getId());
-		setPrice(new BigDecimal(price.getPrice()));
-		setCurrency(price.getCurrency());
-	}
-	
-	/**
-	 * the primary key for a price
-	 */
+	/** the primary key for a price */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "price_id")
@@ -61,7 +48,19 @@ public class PriceEntity {
 	/** currency */
 	private String currency;
 	
+	/** date of creation */
 	@NotNull
 	@Column(name = "creation_date", columnDefinition = "TIMESTAMP")
 	private LocalDateTime creationDate;
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param price {@link PriceDto}
+	 */
+	public PriceEntity(PriceDto price) {
+		setId(price.getId());
+		setPrice(new BigDecimal(price.getPrice()));
+		setCurrency(price.getCurrency());
+	}
 }
