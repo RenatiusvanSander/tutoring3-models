@@ -1,7 +1,5 @@
 package edu.remad.tutoring3.dto;
 
-import java.time.LocalDateTime;
-
 import edu.remad.tutoring3.persistence.models.AddressEntity;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

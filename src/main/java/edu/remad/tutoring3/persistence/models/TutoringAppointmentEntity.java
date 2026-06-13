@@ -18,6 +18,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Tutoring appointment data entity
+ * 
+ * @author edu.remad
+ * @since 2025
+ */
 @Entity
 @Table(name = "tutoring_appointment_entity")
 @NoArgsConstructor
