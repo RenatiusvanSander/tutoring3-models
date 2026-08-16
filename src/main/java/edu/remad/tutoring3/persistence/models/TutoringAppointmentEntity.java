@@ -73,7 +73,7 @@ public class TutoringAppointmentEntity {
 	/**
 	 * when done it is {@code true}
 	 */
-	private boolean isAccomplished;
+	private boolean accomplished;
 
 	/**
 	 * tutoring appointment's creation date
